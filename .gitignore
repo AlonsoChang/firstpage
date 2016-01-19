@@ -1,0 +1,7 @@
+firstpage/*
+node_modules/*
+manage.py
+package.json
+README.md
+webpack-stats.json
+webpack.config.js
