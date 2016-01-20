@@ -4,3 +4,5 @@ manage.py
 package.json
 webpack-stats.json
 webpack.config.js
+assets/bundles/*
+db.sqlite3
