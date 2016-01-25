@@ -13,14 +13,23 @@ export default class SearchBar extends React.Component {
   
    render() {
         return (
-            <form>
-                <input type="text" placeholder="Search..." />
-                <p>
-                    <input type="checkbox" />
-                    {' '}
-                    Only show products in stock
-                </p>
-            </form>
+            <div>
+                <form>
+                    <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        onclick={function(_r1, _r2){
+                            console.log(_r1);
+                            console.log(_r2);
+                        }}
+                    />
+                    <p>
+                        <input type="checkbox" />
+                        {' '}
+                        Only show products in stock
+                    </p>
+                </form>
+            </div>
         );
     }
 }
