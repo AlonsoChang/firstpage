@@ -3,28 +3,46 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 
 export default class SearchBar extends React.Component {
   
-   static propTypes = { };
+    static propTypes = { };
 
-   static defaultProps = {  };
+    static defaultProps = {  };
 
-   shouldComponentUpdate = shouldPureComponentUpdate;
+    shouldComponentUpdate = shouldPureComponentUpdate;
   
-   constructor(props) { super(props); }
+    _bind(...methods) {
+        methods.forEach( (method) => this[method] = this[method].bind(this) );
+    }
+    
+    constructor(props) { 
+        super(props); 
+        this._bind('_onUserInputsChanged');
+    }
+   
+    _onUserInputsChanged () {
+        this.props.onUserInputsChanged(
+            this.refs.filterTextInput.value,
+            this.refs.inStockOnlyInput.checked
+        );
+    }
   
-   render() {
+    render() {
         return (
             <div>
                 <form>
                     <input 
                         type="text" 
                         placeholder="Search..." 
-                        onclick={function(_r1, _r2){
-                            console.log(_r1);
-                            console.log(_r2);
-                        }}
+                        value={this.props.filterText} 
+                        ref="filterTextInput"
+                        onChange={this._onUserInputsChanged}
                     />
                     <p>
-                        <input type="checkbox" />
+                        <input
+                            type="checkbox"
+                            checked={this.props.inStockOnly}
+                            ref="inStockOnlyInput"
+                            onChange={this._onUserInputsChanged}
+                        />
                         {' '}
                         Only show products in stock
                     </p>
